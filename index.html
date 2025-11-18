@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Information Kiosk</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <span>University Kiosk</span>
+            </div>
+            <div class="datetime">
+                <span id="current-date"></span>
+                <span id="current-time"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item active" data-tab="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </li>
+                <li class="nav-item" data-tab="courses">
+                    <i class="fas fa-book"></i>
+                    <span>Courses</span>
+                </li>
+                <li class="nav-item" data-tab="faculty">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Faculty</span>
+                </li>
+                <li class="nav-item" data-tab="events">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Events</span>
+                </li>
+                <li class="nav-item" data-tab="facilities">
+                    <i class="fas fa-building"></i>
+                    <span>Facilities</span>
+                </li>
+                <li class="nav-item" data-tab="map">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Campus Map</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Home Tab -->
+            <section id="home" class="tab-content active">
+                <div class="hero-section">
+                    <h1>Welcome to University Kiosk</h1>
+                    <p>Your one-stop destination for all university information</p>
+                    <div class="quick-links">
+                        <div class="quick-link-card" data-tab="courses">
+                            <i class="fas fa-book"></i>
+                            <h3>Courses</h3>
+                            <p>Browse all available courses</p>
+                        </div>
+                        <div class="quick-link-card" data-tab="faculty">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <h3>Faculty</h3>
+                            <p>Meet our professors</p>
+                        </div>
+                        <div class="quick-link-card" data-tab="events">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>Events</h3>
+                            <p>Upcoming campus events</p>
+                        </div>
+                        <div class="quick-link-card" data-tab="facilities">
+                            <i class="fas fa-building"></i>
+                            <h3>Facilities</h3>
+                            <p>Campus facilities & services</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="announcements">
+                    <h2>Announcements</h2>
+                    <div class="announcement-list">
+                        <div class="announcement-item">
+                            <div class="announcement-date">Oct 15, 2023</div>
+                            <div class="announcement-content">
+                                <h3>Registration for Spring Semester Opens</h3>
+                                <p>Registration for the Spring 2024 semester will open on November 1st. Please check your student portal for your registration time slot.</p>
+                            </div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="announcement-date">Oct 10, 2023</div>
+                            <div class="announcement-content">
+                                <h3>Campus Library Extended Hours</h3>
+                                <p>During finals week, the main campus library will be open 24 hours. Please have your student ID ready for entry after 10 PM.</p>
+                            </div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="announcement-date">Oct 5, 2023</div>
+                            <div class="announcement-content">
+                                <h3>Career Fair Next Week</h3>
+                                <p>The annual university career fair will take place on October 20th in the Student Union Building. Over 100 companies will be recruiting.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Courses Tab -->
+            <section id="courses" class="tab-content">
+                <h2>Course Catalog</h2>
+                <div class="search-bar">
+                    <input type="text" id="course-search" placeholder="Search courses...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="filter-options">
+                    <select id="department-filter">
+                        <option value="all">All Departments</option>
+                        <option value="computer-science">Computer Science</option>
+                        <option value="business">Business</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="arts">Arts & Humanities</option>
+                        <option value="sciences">Natural Sciences</option>
+                    </select>
+                    <select id="level-filter">
+                        <option value="all">All Levels</option>
+                        <option value="undergraduate">Undergraduate</option>
+                        <option value="graduate">Graduate</option>
+                    </select>
+                </div>
+                <div class="courses-grid" id="courses-container">
+                    <!-- Courses will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <!-- Faculty Tab -->
+            <section id="faculty" class="tab-content">
+                <h2>Faculty Directory</h2>
+                <div class="search-bar">
+                    <input type="text" id="faculty-search" placeholder="Search faculty...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="faculty-grid" id="faculty-container">
+                    <!-- Faculty members will be dynamically loaded here -->
+                </div>
+            </section>
+
+            <!-- Events Tab -->
+            <section id="events" class="tab-content">
+                <h2>Upcoming Events</h2>
+                <div class="events-container">
+                    <div class="events-calendar">
+                        <div class="calendar-header">
+                            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                            <h3 id="current-month">October 2023</h3>
+                            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="calendar" id="calendar">
+                            <!-- Calendar will be dynamically generated -->
+                        </div>
+                    </div>
+                    <div class="events-list">
+                        <h3>Events This Week</h3>
+                        <div class="events" id="events-list">
+                            <!-- Events will be dynamically loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Facilities Tab -->
+            <section id="facilities" class="tab-content">
+                <h2>Campus Facilities</h2>
+                <div class="facilities-grid">
+                    <div class="facility-card">
+                        <div class="facility-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Library</h3>
+                        <p>Open 8 AM - 10 PM (Extended hours during finals)</p>
+                        <div class="facility-status open">Open</div>
+                    </div>
+                    <div class="facility-card">
+                        <div class="facility-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Cafeteria</h3>
+                        <p>Open 7 AM - 8 PM</p>
+                        <div class="facility-status open">Open</div>
+                    </div>
+                    <div class="facility-card">
+                        <div class="facility-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <h3>Fitness Center</h3>
+                        <p>Open 6 AM - 11 PM</p>
+                        <div class="facility-status open">Open</div>
+                    </div>
+                    <div class="facility-card">
+                        <div class="facility-icon">
+                            <i class="fas fa-clinic-medical"></i>
+                        </div>
+                        <h3>Health Center</h3>
+                        <p>Open 9 AM - 5 PM (Closed weekends)</p>
+                        <div class="facility-status closed">Closed</div>
+                    </div>
+                    <div class="facility-card">
+                        <div class="facility-icon">
+                            <i class="fas fa-parking"></i>
+                        </div>
+                        <h3>Parking Garage</h3>
+                        <p>24/7 access with valid permit</p>
+                        <div class="facility-status open">Open</div>
+                    </div>
+                    <div class="facility-card">
+                        <div class="facility-icon">
+                            <i class="fas fa-laptop-house"></i>
+                        </div>
+                        <h3>Computer Lab</h3>
+                        <p>Open 7 AM - Midnight</p>
+                        <div class="facility-status open">Open</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Campus Map Tab -->
+            <section id="map" class="tab-content">
+                <h2>Campus Map</h2>
+                <div class="map-container">
+                    <div class="map-sidebar">
+                        <h3>Locations</h3>
+                        <ul class="location-list">
+                            <li data-location="library">Library</li>
+                            <li data-location="student-union">Student Union</li>
+                            <li data-location="science-building">Science Building</li>
+                            <li data-location="arts-center">Arts Center</li>
+                            <li data-location="gymnasium">Gymnasium</li>
+                            <li data-location="cafeteria">Cafeteria</li>
+                        </ul>
+                    </div>
+                    <div class="map-display">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <p>Interactive Campus Map</p>
+                            <p class="map-note">(In a real implementation, this would be an interactive map)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@university.edu</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 University Ave, City, State 12345</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">University Website</a></li>
+                        <li><a href="#">Student Portal</a></li>
+                        <li><a href="#">Academic Calendar</a></li>
+                        <li><a href="#">Campus Safety</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Emergency</h3>
+                    <p class="emergency-contact">Campus Police: <strong>911</strong></p>
+                    <p class="emergency-contact">Emergency Hotline: <strong>(123) 456-EMER</strong></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 University Information Kiosk. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
